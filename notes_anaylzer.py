@@ -196,6 +196,8 @@ def gen_wordcloud(train_file, test_file):
                 max_words=1000, stopwords=stopwords,
                 collocations=False, include_numbers=False)
 
+    os.makedirs("img", exist_ok=True)
+
     # training dataset wordclouds
     with open(train_file, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -209,6 +211,7 @@ def gen_wordcloud(train_file, test_file):
                 pass
             all_text = all_text + ' ' + note_text
             chunk_text = chunk_text + ' ' + get_chunk_text(note_text, 2)
+
 
         fname = "img/wordcloud_train_all.png"
         print("Creating " + fname)
@@ -232,10 +235,13 @@ def gen_wordcloud(train_file, test_file):
         print("Creating " + fname)
         wordcloud = WordCloud(**args).generate(all_text)
         wordcloud.to_file(fname)
-        fname = "img/wordcloud_test_chunk_5.png"
-        print("Creating " + fname)
-        wordcloud_chunk = WordCloud(**args).generate(get_test_rating_text())
-        wordcloud_chunk.to_file(fname)
+
+        # TODO: better check
+        if os.path.isfile(config.ratings_first):
+            fname = "img/wordcloud_test_chunk_5_ratings.png"
+            print("Creating " + fname)
+            wordcloud_chunk = WordCloud(**args).generate(get_test_rating_text())
+            wordcloud_chunk.to_file(fname)
 
 def get_ratings_averages():
     """ Combine ratings into averages """
