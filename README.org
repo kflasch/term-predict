@@ -8,19 +8,29 @@ on clinical notes.
 python3, nltk, numpy, spacy, pandas, scikit-learn, empath, spacy, scispacy,
 liac-arff, matplotlib, wordcloud, scispacy
 ** Optional Dependencies
-Weka, python-weka-wrapper3
+Weka, Java, python-weka-wrapper3
 
 * Installation
-It is suggested to setup a venv (Python virtual environment) and use
-pip to install the requirements.
+First, clone the repository:
 #+BEGIN_SRC shell
-  # setup Python environment and install dependencies
+  git clone https://github.com/kflasch/term-predict.git
+#+END_SRC
+Next, install the dependencies. It is suggested to setup a venv
+(Python virtual environment) or equivalent:
+#+BEGIN_SRC shell
   python -m venv venv/term-predict
   source venv/term-predict/bin/activate
+#+END_SRC
+and then use pip to install them. You can install the dependencies
+via the provided requirements.txt file:
+#+BEGIN_SRC shell
+  pip install -r requirements.txt
+#+END_SRC
+Or you can install the dependencies individually:
+#+BEGIN_SRC shell
   pip install nltk
-  python -m nltk.downloader all
-  pip install pandas
   pip install numpy
+  pip install pandas
   pip install scikit-learn
   pip install liac-arff
   pip install matplotlib
@@ -28,18 +38,24 @@ pip to install the requirements.
   pip install empath
   pip install spacy
   pip install scispacy
-  # the following are models for scispaCy -- at least one is needed
-  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_sm-0.4.0.tar.gz
-  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_lg-0.4.0.tar.gz
-  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_scibert-0.4.0.tar.gz
-  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
 
   # Optionally, for Weka (requires Weka and Java to be installed separately):
   pip install javabridge
   pip install python-weka-wrapper3
+#+END_SRC
 
-  # install term prediction tools
-  git clone https://github.com/kflasch/term-predict.git
+Install at least one of the scispaCy models for NER:
+#+BEGIN_SRC shell
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_sm-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_lg-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_scibert-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
+#+END_SRC
+
+Finally, download NLTK data as described at [[https://www.nltk.org/data.html][Installing NLTK Data]]. As a
+normal user, it typically downloads the data to ~/nltk_data.
+#+BEGIN_SRC shell
+  python -m nltk.downloader all
 #+END_SRC
 
 * Usage
