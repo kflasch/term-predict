@@ -1,0 +1,64 @@
+#+TITLE: Term Prediction on Text Notes
+
+This project is an assortment of tools used for term prediction in
+text notes. It was originally used specifically for term prediction
+on clinical notes. 
+
+* Dependencies
+python3, nltk, numpy, spacy, pandas, scikit-learn, empath, spacy, scispacy,
+liac-arff, matplotlib, wordcloud, scispacy
+** Optional
+Weka, python-weka-wrapper3
+
+* Installation
+It is suggested to setup a venv (Python virtual environment) and use
+pip to install the requirements.
+#+BEGIN_SRC shell
+  # setup Python environment and install dependencies
+  python -m venv venv/term-predict
+  source venv/term-predict/bin/activate
+  pip install nltk
+  python -m nltk.downloader all
+  pip install pandas
+  pip install numpy
+  pip install scikit-learn
+  pip install liac-arff
+  pip install matplotlib
+  pip install wordcloud
+  pip install empath
+  pip install spacy
+  pip install scispacy
+  # the following are models for scispaCy -- at least one is needed
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_sm-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_lg-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_scibert-0.4.0.tar.gz
+  pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
+
+  # Optionally, for Weka (requires Weka and Java to be installed separately):
+  pip install javabridge
+  pip install python-weka-wrapper3
+
+  # install term prediction tools
+  git clone https://github.com
+#+END_SRC
+
+* Usage
+Most programs can be run with -h to see their options.
+** config.py
+Configuration file for settings.
+** term_predict.py
+The main program to run prediction and cross-validations across
+different classifiers.
+** create_datafiles.py
+Creates pandas dataframes (as pkl files) and arff files form CSV notes
+to be used by term_predict.py. Also creates templates to be used for
+manual ratings.
+** notes_analyzer.py
+Show information about CSV notes, ratings information, generate wordclouds.
+** empath_helper.py
+Create categories to be used by Empath.
+** weka_runner.py
+Used to run Weka on datafiles with python-weka-wrapper3.
+** misc
+The misc directory contains a few unused files that may be of some
+interest, relating to using other libraries.
