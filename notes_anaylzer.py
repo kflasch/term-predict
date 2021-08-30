@@ -321,5 +321,8 @@ if __name__ == '__main__':
     parser.add_argument("-r", "--ratings", help="show ratings info", action="store_true")
     parser.add_argument("datafile", nargs="?", default=None, help="filename for dataset")
     parser.add_argument("dataset", nargs="?", default=None, help="dataset name (typically 'train' or 'test')")
+    if len(sys.argv) < 2:
+        parser.print_help()
+        sys.exit(1)
     args = parser.parse_args()
     main(args)
