@@ -15,13 +15,13 @@ First, clone the repository:
 #+BEGIN_SRC shell
   git clone https://github.com/kflasch/term-predict.git
 #+END_SRC
-Next, install the dependencies. It is suggested to setup a venv
+Next, install the dependencies. It is suggested to setup a [[https://docs.python.org/3/library/venv.html][venv]]
 (Python virtual environment) or equivalent:
 #+BEGIN_SRC shell
   python -m venv venv/term-predict
   source venv/term-predict/bin/activate
 #+END_SRC
-and then use pip to install them. You can install the dependencies
+and then use [[https://pip.pypa.io/en/stable/][pip]] to install them. You can install the dependencies
 via the provided requirements.txt file:
 #+BEGIN_SRC shell
   pip install -r requirements.txt
@@ -80,3 +80,7 @@ Used to run Weka on datafiles with python-weka-wrapper3.
 ** misc
 The misc directory contains a few unused files that may be of some
 interest, relating to using other libraries.
+
+* License
+Distributed under the GNU General Public License v3.0. See LICENSE for
+more information.
