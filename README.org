@@ -7,7 +7,7 @@ on clinical notes.
 * Dependencies
 python3, nltk, numpy, spacy, pandas, scikit-learn, empath, spacy, scispacy,
 liac-arff, matplotlib, wordcloud, scispacy
-** Optional
+** Optional Dependencies
 Weka, python-weka-wrapper3
 
 * Installation
@@ -39,13 +39,14 @@ pip to install the requirements.
   pip install python-weka-wrapper3
 
   # install term prediction tools
-  git clone https://github.com
+  git clone https://github.com/kflasch/term-predict.git
 #+END_SRC
 
 * Usage
 Most programs can be run with -h to see their options.
 ** config.py
-Configuration file for settings.
+Configuration file for the various tools to define datafiles, options,
+etc.
 ** term_predict.py
 The main program to run prediction and cross-validations across
 different classifiers.
