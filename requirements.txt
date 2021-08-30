@@ -7,7 +7,6 @@ conllu==4.4.1
 cycler==0.10.0
 cymem==2.0.5
 empath==0.89
-en-core-sci-sm==0.4.0
 idna==3.2
 javabridge==1.0.19
 Jinja2==3.0.1
