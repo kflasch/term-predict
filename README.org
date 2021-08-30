@@ -44,18 +44,19 @@ Or you can install the dependencies individually:
   pip install python-weka-wrapper3
 #+END_SRC
 
-Install at least one of the scispaCy models for NER:
+Download data for NLTK as described at [[https://www.nltk.org/data.html][Installing NLTK Data]]. An easy way
+to do this (which typically downloads the data to ~/nltk_data) is:
+#+BEGIN_SRC shell
+  python -m nltk.downloader all
+#+END_SRC
+
+Finally, install at least one of the scispaCy models for NER. You may want to confirm
+these URLs, find updates to them, or find additional models at: [[https://github.com/allenai/scispacy]]
 #+BEGIN_SRC shell
   pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_sm-0.4.0.tar.gz
   pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_lg-0.4.0.tar.gz
   pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_core_sci_scibert-0.4.0.tar.gz
   pip install https://s3-us-west-2.amazonaws.com/ai2-s2-scispacy/releases/v0.4.0/en_ner_bionlp13cg_md-0.4.0.tar.gz
-#+END_SRC
-
-Finally, download NLTK data as described at [[https://www.nltk.org/data.html][Installing NLTK Data]]. As a
-normal user, it typically downloads the data to ~/nltk_data.
-#+BEGIN_SRC shell
-  python -m nltk.downloader all
 #+END_SRC
 
 * Usage
