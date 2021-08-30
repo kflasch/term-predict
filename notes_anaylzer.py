@@ -7,7 +7,6 @@ import csv
 import re
 from collections import Counter
 import argparse
-import sqlite3
 import string
 import nltk
 import pandas as pd
