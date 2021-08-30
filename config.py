@@ -29,6 +29,10 @@ ratings_third = ratings_dir + term + "_chunk_5_ratings_third_rater.txt"
 
 # Empath categories to be matched against as feature
 empath_categories = ["depleting", "muscskel", "gaitmobility", "fracture", "frail"]
+# words to build Empath categories -- keys must match empath_categories
+empath_cat_words = {"depleting": ["depleting"], "muscskel": ["muscle", "skeletal", "musculoskeletal"],
+                    "gaitmobility": ["gait", "mobility"],
+                    "fracture": ["fracture"], "frail": ["frail", "frailty"]}
 
 # generates NER transformed data when datafiles are created with selected model
 ner_transform = False
