@@ -67,33 +67,33 @@ different classifiers.
 *** Cross-Validation
 Performs 10-fold cross-validation on defaults or given dataset.
 **** Run cross-validation on default classifier (SVC) and default files:
-~./term_predict.py -c~
+: ./term_predict.py -c
 **** Run cross-validation on specific classifier and default files:
-~./term_predict.py -c dtree~
+: ./term_predict.py -c dtree
 **** Run cross-validation on specific classifier and specific file:
-~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~
+: ./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl
 *** Prediction
 Performs prediction using training and test datasets. If ratings
 exist (for chunk 5), these will be used to compute performance.
 **** Run prediction on default classifier (SVC) and default files:
-~./term_predict.py -p~
+: ./term_predict.py -p
 **** Run prediction on specific classifier and default files:
-~./term_predict.py -p dtree~
+: ./term_predict.py -p dtree
 **** Run prediction on specific classifier and specific file:
-~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~
+: ./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl
 ** create_datafiles.py
 Creates pandas dataframes (as pkl files) and arff files form CSV notes
 to be used by term_predict.py. Also creates templates to be used for
 manual ratings. Files created are chunked by the setting =chunk_sizes=
 in config.py.
 **** Create dataframe pkl files for use with term_predict.py using defaults:
-~./create_datafiles.py -p~
+: ./create_datafiles.py -p
 **** Create dataframe pkl files for use with term_predict.py using specific csv file and data type:
-~./create_datafiles.py -p data/sarcopenia_training_data.csv train~
+: ./create_datafiles.py -p data/sarcopenia_training_data.csv train
 **** Create arff files for use with weka_runner.py using defaults:
-~./create_datafiles.py -a~
+: ./create_datafiles.py -a
 **** Create rating template file from test data:
-~./create_datafiles.py -r~
+: ./create_datafiles.py -r
 ** notes_analyzer.py
 Show information about CSV notes, ratings information, generate wordclouds.
 ** empath_helper.py
