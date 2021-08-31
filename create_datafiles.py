@@ -307,5 +307,8 @@ if __name__ == '__main__':
     parser.add_argument("-r", "--rating", help="create rating template file from test data", action="store_true")
     parser.add_argument("csvfile", nargs="?", default=None, help="filename for csv dataset")
     parser.add_argument("dataset", nargs="?", default=None, help="dataset type ('train' or 'test')")
+    if len(sys.argv) < 2:
+        parser.print_help()
+        sys.exit(1)
     args = parser.parse_args()
     main(args)
