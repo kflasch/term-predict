@@ -117,7 +117,29 @@ interest, relating to using other libraries.
 * Configuration
 Configuration settings are in config.py. Comments in the config file
 should help explain what each option does. Some of these options must
-be set before running to specify data locations.
+be set before running, such as specifying data locations. Some of the
+options are listed below.
+
+| Option                    | Description                               | Example Value                                             |
+|---------------------------+-------------------------------------------+-----------------------------------------------------------|
+| term                      | The term used for prediction              | "sarcopenia"                                              |
+| mask                      | What to mask term with in training data   | ""                                                        |
+| chunk_sizes               | How many sentences per chunk              | [5, 7, 9]                                                 |
+| data_dir                  | Location of data files                    | "data/"                                                   |
+| train_data                | CSV file of training data                 | "data/training.csv"                                       |
+| test_data                 | CSV file of test data                     | "data/test.csv"                                           |
+| anatomy_terms_file        | List of anatomy terms to match            | "data/anatomy.txt"                                        |
+| ratings_dir               | Location of ratings data                  | "data/ratings/"                                           |
+| empath_categories         | Empath categories used for feature        | ["fracture", "frail"]                                     |
+| empath_cat_words          | Words used to build Empath categories     | {"fracture": ["fracture"], "frail": ["frail", "frailty"]} |
+| ner_transform             | Flag to create NER transformed text       | True                                                      |
+| spacy_model               | Which spacy model to use in NER           | "en_core_sci_sm"                                          |
+| oversample_amount         | How many times to oversample training set | 0                                                         |
+| use_feature_notetype      | Enable note type feature                  | True                                                      |
+| use_feature_textlen       | Enable text length feature                | False                                                     |
+| use_feature_empath        | Enable Empath feature                     | False                                                     |
+| use_feature_anatomy_terms | Enable anatomy term matching feature      | True                                                      |
+
 
 * License
 Distributed under the GNU General Public License v3.0. See LICENSE for
