@@ -61,7 +61,7 @@ weight_ratings = False
 # only show a few performance measures in output
 sklearn_reduced_output = False
 # print out text of predicted samples
-sklearn_print_predtext = False
+sklearn_print_predtext = True
 # plot decision tree image to file when decision tree classifier is used
 plot_dtree = False
 # show cross-validation train scores (may be useful for holdout sets)
