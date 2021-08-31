@@ -3,6 +3,7 @@
 
 import sys
 import time
+import argparse
 from datetime import timedelta
 import weka.core.jvm as jvm
 from weka.core.converters import Loader
@@ -106,27 +107,27 @@ def cross_val_all(classifier=".SMO"):
     cross_validate_time = timedelta(seconds=(time.process_time() - start))
     print("\nTime elapsed: " + str(cross_validate_time))
     
-def main():
-
-    if len(sys.argv) > 3:
-        print("Incorrect number of arguments")
-        return
+def main(args):
     
     jvm.start(system_cp=True, packages=True)
 
     print()
-    if len(sys.argv) < 2:
-        # default no arguments
-        cross_val_all()
-    elif len(sys.argv) == 2:
-        # cross validate on given classifier on default files
-        cross_val_all(sys.argv[1])
-    elif len(sys.argv) == 3:
+    if args.classifier and args.filepath:
         # cross validate on given classifier and file
-        cross_validate(sys.argv[1], sys.argv[2])
+        cross_validate(args.classifier, args.filepath)
+    elif args.classifier:
+        # cross validate on given classifier on default files
+        cross_val_all(args.classifier)
+    else:
+        cross_val_all()
 
     print()
     jvm.stop()
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description="Run Weka for term prediction cross-validation.")
+    parser.add_argument("classifier", nargs="?", default=None,
+                        help="Weka classifier name (RandomForest, .SMO, J48, IBk, etc.. )")
+    parser.add_argument("filepath", nargs="?", default=None, help="filename for dataset")
+    args = parser.parse_args()
+    main(args)
