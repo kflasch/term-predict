@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ sklearn-based classification for term prediction """
 
+import os
 import sys
 import warnings
 import argparse
@@ -247,8 +248,11 @@ def run_clf(clf_name, filepath, do_cv=True, do_predict=False, do_holdout=False):
 
         # print_prediction_results(type(clf).__name__, utils.get_features(collist), test_filepath, df_test)
 
-        # if not chunk 5, do nothing with ratings, just display results
-        if chunk_size != "5":
+        # TODO: better check for ratings
+        ratings_exist = True if os.path.isfile(config.ratings_first) else False
+
+        # if not chunk 5 or no ratings files, do nothing with ratings, just display results
+        if chunk_size != "5" or not ratings_exist:
             print("\nPositive predictions on data set " + test_filepath + " with classifier " + type(clf).__name__)
             print("Using features: " + feature_list)
             print("-------------------------------------------------------------------------------------------------")
@@ -511,8 +515,12 @@ def main(do_cv, do_predict, do_holdout, classifier=None, filepath=None):
         print("Incorrect options")
         return
 
+    if do_cv and do_predict:
+        print("Incorrect options: choose either -c or -p")
+        return
+
     print_current_config(do_cv, do_predict)
-    print_header()
+    if do_cv: print_header()
 
     if classifier and filepath:
         run(classifier, filepath, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
@@ -536,5 +544,8 @@ if __name__ == '__main__':
     parser.add_argument("classifier", nargs="?", default=None,
                         help="classifier name (svc, randomforest, gbc, dtree, naivebayes, knn, perceptron, logreg, mlp, crf)")
     parser.add_argument("filepath", nargs="?", default=None, help="filename for training data")
+    if len(sys.argv) < 2:
+        parser.print_help()
+        sys.exit(1)
     args = parser.parse_args()
     main(args.cv, args.predict, args.holdout, args.classifier, args.filepath)
