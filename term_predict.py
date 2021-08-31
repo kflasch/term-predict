@@ -278,11 +278,6 @@ def run_clf(clf_name, filepath, do_cv=True, do_predict=False, do_holdout=False):
                     get_pred_cm(predicted, r3)]
         # sum all keys
         cm_all = {k: sum(cm[k] for cm in cm_dicts) for k in cm_dicts[0]}
-        print_score_results(type(clf).__name__, feature_list, chunk_size, None, cm_all)
-
-        # ratings avg version
-        cm_avg = get_pred_cm_from_avg(predicted, combined_avg)
-        print_score_results(type(clf).__name__ + " AVG", feature_list, chunk_size, None, cm_avg)
 
         if config.sklearn_print_predtext:
             print("\nPositive predictions on data set " + test_filepath + " with classifier " + type(clf).__name__)
@@ -292,6 +287,14 @@ def run_clf(clf_name, filepath, do_cv=True, do_predict=False, do_holdout=False):
             for i, (chunk, hasword) in enumerate(zip(df_test['notes'], predicted), start=1):
                 if hasword:
                     print('Chunk %d => %r...  Ratings: %d %d %d' % (i, chunk[0:50], r1[i], r2[i], r3[i]))
+
+        print_table_header()
+        print_score_results(type(clf).__name__, feature_list, chunk_size, None, cm_all)
+        # ratings avg version
+        cm_avg = get_pred_cm_from_avg(predicted, combined_avg)
+        print_score_results(type(clf).__name__ + " AVG", feature_list, chunk_size, None, cm_avg)
+        print_table_footer()
+        print()
 
         return
 
@@ -481,10 +484,10 @@ def print_score_results(clf_name, features, chunk_size, scores, cm=None, use_tra
     else:
         print("| {0:26} | {1:52} | {2:5} | ".format(clf_name, features, chunk_size), end='')
         print("{0:3g} | {1:3g} | {2:3g} | {3:4g} | ".format(tp, fn, fp, tn), end='')
-        print("{0:5.3f} | {1:9.3f} | {2:5.3f} | {3:6.3f} | {4:5.3f} | {5:7.3f} | {6:5.3f} |"
+        print("{0:5.3f} | {1:9.3f} | {2:5.3f} | {3:6.3f} | {4:5.3f} | {5:7.3f} | {6:6.3f} |"
               .format(accuracy, balanced_accuracy, precision, recall, f1, roc_auc, kappa))
 
-def print_header():
+def print_table_header():
     """ Print out table header info about results """
     print()
     if config.sklearn_reduced_output:
@@ -493,10 +496,17 @@ def print_header():
               .format("Classifier", "Features", "Chunk", "Prec.", "Recall", "F1"))
         print("|{:-<116}|".format(""))
     else:
-        print("|{:-<179}|".format(""))
-        print("| {:26} | {:52} | {:5} | {:3} | {:3} | {:3} | {:4} | {:5} | {:9} | {:5} | {:6} | {:5} | {:7} | {:5} |"
+        print("|{:-<180}|".format(""))
+        print("| {:26} | {:52} | {:5} | {:3} | {:3} | {:3} | {:4} | {:5} | {:9} | {:5} | {:6} | {:5} | {:7} | {:6} |"
               .format("Classifier", "Features", "Chunk", "TP", "FN", "FP", "TN", "Acc.", "Bal. Acc.", "Prec.", "Recall", "F1", "ROC AUC", "Kappa"))
-        print("|{:-<179}|".format(""))
+        print("|{:-<180}|".format(""))
+
+def print_table_footer():
+    """ Print out table footer for results """
+    if config.sklearn_reduced_output:
+        print("|{:-<116}|".format(""))
+    else:
+        print("|{:-<180}|".format(""))
 
 def print_current_config(do_cv, do_predict):
     """ Print relevant config options at time of run """
@@ -520,7 +530,7 @@ def main(do_cv, do_predict, do_holdout, classifier=None, filepath=None):
         return
 
     print_current_config(do_cv, do_predict)
-    if do_cv: print_header()
+    if do_cv: print_table_header()
 
     if classifier and filepath:
         run(classifier, filepath, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
@@ -529,11 +539,7 @@ def main(do_cv, do_predict, do_holdout, classifier=None, filepath=None):
     else:
         run_on_all_files(do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
 
-    if config.sklearn_reduced_output:
-        print("|{:-<116}|".format(""))
-    else:
-        print("|{:-<179}|".format(""))
-
+    if do_cv: print_table_footer()
     print()
 
 if __name__ == '__main__':
