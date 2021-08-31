@@ -163,11 +163,11 @@ def run_on_all_files(clf_name="svc", do_cv=True, do_predict=False, do_holdout=Fa
     if clf_name == "all":
         clf_names = ["svc", "randomforest", "gbc", "dtree", "naivebayes", "knn", "logreg", "perceptron", "mlp"]
     for name in clf_names:
-        run_clf(name, config.train_pd_file_1, do_cv=do_cv, do_predict=do_predict)
-        run_clf(name, config.train_pd_file_3, do_cv=do_cv, do_predict=do_predict)
-        run_clf(name, config.train_pd_file_5, do_cv=do_cv, do_predict=do_predict)
-        run_clf(name, config.train_pd_file_7, do_cv=do_cv, do_predict=do_predict)
-        run_clf(name, config.train_pd_file_9, do_cv=do_cv, do_predict=do_predict)
+        run_clf(name, config.train_pd_file_1, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
+        run_clf(name, config.train_pd_file_3, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
+        run_clf(name, config.train_pd_file_5, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
+        run_clf(name, config.train_pd_file_7, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
+        run_clf(name, config.train_pd_file_9, do_cv=do_cv, do_predict=do_predict, do_holdout=do_holdout)
 
 def run(clf_name, filepath, do_cv=True, do_predict=False, do_holdout=False):
     """ Run classifier(s) on filepath """
