@@ -64,13 +64,23 @@ Most programs can be run with -h to see their options.
 ** term_predict.py
 The main program to run prediction and cross-validations across
 different classifiers.
-*** Cross-validation
-Run cross-validation on default classifier (SVC) and default files:
+*** Cross-Validation
+Performs 10-fold cross-validation on defaults or given dataset.
+**** Run cross-validation on default classifier (SVC) and default files:
 ~./term_predict.py -c~
-Run cross-validation on specific classifier and default files:
+**** Run cross-validation on specific classifier and default files:
 ~./term_predict.py -c dtree~
-Run cross-validation on specific classifier and specific file:
-~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~~
+**** Run cross-validation on specific classifier and specific file:
+~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~
+*** Prediction
+Performs prediction using training and test datasets. If ratings
+exist (for chunk 5), these will be used to compute performance.
+**** Run prediction on default classifier (SVC) and default files:
+~./term_predict.py -p~
+**** Run prediction on specific classifier and default files:
+~./term_predict.py -p dtree~
+**** Run prediction on specific classifier and specific file:
+~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~
 ** create_datafiles.py
 Creates pandas dataframes (as pkl files) and arff files form CSV notes
 to be used by term_predict.py. Also creates templates to be used for
