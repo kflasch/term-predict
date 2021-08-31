@@ -84,7 +84,16 @@ exist (for chunk 5), these will be used to compute performance.
 ** create_datafiles.py
 Creates pandas dataframes (as pkl files) and arff files form CSV notes
 to be used by term_predict.py. Also creates templates to be used for
-manual ratings.
+manual ratings. Files created are chunked by the setting =chunk_sizes=
+in config.py.
+**** Create dataframe pkl files for use with term_predict.py using defaults:
+~./create_datafiles.py -p~
+**** Create dataframe pkl files for use with term_predict.py using specific csv file and data type:
+~./create_datafiles.py -p data/sarcopenia_training_data.csv train~
+**** Create arff files for use with weka_runner.py using defaults:
+~./create_datafiles.py -a~
+**** Create rating template file from test data:
+~./create_datafiles.py -r~
 ** notes_analyzer.py
 Show information about CSV notes, ratings information, generate wordclouds.
 ** empath_helper.py
