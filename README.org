@@ -5,7 +5,7 @@ text notes. It was originally used specifically for term prediction
 on clinical notes. It is mainly based around [[https://scikit-learn.org/stable/][scikit-learn]].
 
 * Dependencies
-python3, nltk, numpy, pandas, scikit-learn, empath, spacy, scispacy,
+python3, nltk, numpy, pandas, scikit-learn, empath, spaCy, scispaCy,
 liac-arff, matplotlib, wordcloud
 ** Optional Dependencies
 Weka, Java, python-weka-wrapper3
@@ -105,7 +105,7 @@ Show information about CSV notes, ratings information, generate wordclouds.
 *** Show ratings for sentence chunks:
 : ./notes_analyzer.py -r
 ** empath_helper.py
-Create categories to be used by Empath, and analyze notes with
+Create categories to be used by [[https://github.com/Ejhfast/empath-client][Empath]], and analyze notes with
 Empath. Categories *must* be created initially to use Empath category
 features, by running ~./empath_helper.py -c~
 ** weka_runner.py
@@ -123,7 +123,7 @@ options are listed below.
 | Option                    | Description                               | Example Value                                             |
 |---------------------------+-------------------------------------------+-----------------------------------------------------------|
 | term                      | The term used for prediction              | "sarcopenia"                                              |
-| mask                      | What to mask term with in training data   | ""                                                        |
+| mask                      | Replaces term in training data            | ""                                                        |
 | chunk_sizes               | How many sentences per chunk              | [5, 7, 9]                                                 |
 | data_dir                  | Location of data files                    | "data/"                                                   |
 | train_data                | CSV file of training data                 | "data/training.csv"                                       |
@@ -133,13 +133,13 @@ options are listed below.
 | empath_categories         | Empath categories used for feature        | ["fracture", "frail"]                                     |
 | empath_cat_words          | Words used to build Empath categories     | {"fracture": ["fracture"], "frail": ["frail", "frailty"]} |
 | ner_transform             | Flag to create NER transformed text       | True                                                      |
-| spacy_model               | Which spacy model to use in NER           | "en_core_sci_sm"                                          |
+| spacy_model               | Which spaCy model to use in NER           | "en_core_sci_sm"                                          |
 | oversample_amount         | How many times to oversample training set | 0                                                         |
 | use_feature_notetype      | Enable note type feature                  | True                                                      |
 | use_feature_textlen       | Enable text length feature                | False                                                     |
 | use_feature_empath        | Enable Empath feature                     | False                                                     |
 | use_feature_anatomy_terms | Enable anatomy term matching feature      | True                                                      |
-
+| plot_dtree                | Save plot of decision tree                | True                                                      |
 
 * License
 Distributed under the GNU General Public License v3.0. See LICENSE for
