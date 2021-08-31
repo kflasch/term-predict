@@ -86,16 +86,24 @@ Creates pandas dataframes (as pkl files) and arff files form CSV notes
 to be used by term_predict.py. Also creates templates to be used for
 manual ratings. Files created are chunked by the setting =chunk_sizes=
 in config.py.
-**** Create dataframe pkl files for use with term_predict.py using defaults:
+*** Create dataframe pkl files for use with term_predict.py using defaults:
 : ./create_datafiles.py -p
-**** Create dataframe pkl files for use with term_predict.py using specific csv file and data type:
+*** Create dataframe pkl files for use with term_predict.py using specific csv file and data type:
 : ./create_datafiles.py -p data/sarcopenia_training_data.csv train
-**** Create arff files for use with weka_runner.py using defaults:
+*** Create arff files for use with weka_runner.py using defaults:
 : ./create_datafiles.py -a
-**** Create rating template file from test data:
+*** Create rating template file from test data:
 : ./create_datafiles.py -r
 ** notes_analyzer.py
 Show information about CSV notes, ratings information, generate wordclouds.
+*** Analyze training notes
+: ./notes_analyzer.py -t
+*** Analyze test notes
+: ./notes_analyzer.py -s
+*** Generate Wordcloud images
+: ./notes_analyzer.py -w
+*** Show ratings for sentence chunks
+: ./notes_analyzer.py -r
 ** empath_helper.py
 Create categories to be used by Empath, and analyze notes with
 Empath. Categories *must* be created initially to use Empath category
