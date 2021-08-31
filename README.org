@@ -96,13 +96,13 @@ in config.py.
 : ./create_datafiles.py -r
 ** notes_analyzer.py
 Show information about CSV notes, ratings information, generate wordclouds.
-*** Analyze training notes
+*** Analyze training notes:
 : ./notes_analyzer.py -t
-*** Analyze test notes
+*** Analyze test notes:
 : ./notes_analyzer.py -s
-*** Generate Wordcloud images
+*** Generate Wordcloud images:
 : ./notes_analyzer.py -w
-*** Show ratings for sentence chunks
+*** Show ratings for sentence chunks:
 : ./notes_analyzer.py -r
 ** empath_helper.py
 Create categories to be used by Empath, and analyze notes with
