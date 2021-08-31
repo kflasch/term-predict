@@ -13,7 +13,7 @@ Weka, Java, python-weka-wrapper3
 * Installation
 First, clone the repository:
 #+BEGIN_SRC shell
-:  git clone https://github.com/kflasch/term-predict.git
+  git clone https://github.com/kflasch/term-predict.git
 #+END_SRC
 Next, install the dependencies. It is suggested to setup a [[https://docs.python.org/3/library/venv.html][venv]]
 (Python virtual environment) or equivalent:
@@ -64,6 +64,13 @@ Most programs can be run with -h to see their options.
 ** term_predict.py
 The main program to run prediction and cross-validations across
 different classifiers.
+*** Cross-validation
+Run cross-validation on default classifier (SVC) and default files:
+~./term_predict.py -c~
+Run cross-validation on specific classifier and default files:
+~./term_predict.py -c dtree~
+Run cross-validation on specific classifier and specific file:
+~./term_predict.py -c dtree data/sarcopenia_chunk_5_train.pkl~~
 ** create_datafiles.py
 Creates pandas dataframes (as pkl files) and arff files form CSV notes
 to be used by term_predict.py. Also creates templates to be used for
@@ -72,8 +79,8 @@ manual ratings.
 Show information about CSV notes, ratings information, generate wordclouds.
 ** empath_helper.py
 Create categories to be used by Empath, and analyze notes with
-Empath. Categories *must* be created initially to use Empath features,
-with ~./empath_helper.py -c~
+Empath. Categories *must* be created initially to use Empath category
+features, by running ~./empath_helper.py -c~
 ** weka_runner.py
 Used to run Weka on datafiles with python-weka-wrapper3.
 ** misc
