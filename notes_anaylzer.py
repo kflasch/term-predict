@@ -32,7 +32,6 @@ def parse_csv_file(csv_filename, dataset):
         if dataset == 'train':
             # training model data
             for row in reader:
-                # patient_num,encounter_num,note_id_encr,type_ip_c,type_ip_name,deid_note_text
                 note_ids.append(row['note_id_encr'])
                 note_text = row['deid_note_text']
                 matches = re.findall(term, note_text, re.IGNORECASE)
@@ -42,7 +41,6 @@ def parse_csv_file(csv_filename, dataset):
                           " for file " + csv_filename)
                     continue
                 elif len(matches) > 1:
-                    # one note has term twice in the same 'sentence'
                     # do nothing different
                     print("Mulitple occurences of term '" + term + "' in " + row['note_id_encr'])
                 analyze_surrounding_sents(note_text, num_sents_each_side)
@@ -56,7 +54,6 @@ def parse_csv_file(csv_filename, dataset):
         elif dataset == 'test':
             # test data -- coded dataset -- term will not occur in this text
             for row in reader:
-                # name,note_id,note_csn_id,deid_note_text
                 note_ids.append(row['note_id'])
                 note_text = row['deid_note_text']
 
@@ -100,7 +97,7 @@ def parse_csv_file(csv_filename, dataset):
     print()
 
 def check_duplicate_ids(note_ids):
-    """ check for any duplicate note ids """
+    """ Check for any duplicate note ids """
     note_ids.sort()
     duplicates = [k for k,v in Counter(note_ids).items() if v>1]
     if len(duplicates) > 0:
@@ -150,17 +147,6 @@ def print_freqs(freqs, limit):
         if freqs[freq] > limit:
             print(freq, freqs[freq])
     print()
-
-# def get_tagged_text(text):
-#     word_tokens = nltk.word_tokenize(text)
-#     return nltk.pos_tag(word_tokens)
-
-# def get_tagged_sents(text):
-#     """Tokenize and tag text as sentences"""
-#     sentences = nltk.sent_tokenize(text)
-#     sentences = [nltk.word_tokenize(sent) for sent in sentences]
-#     sentences = [nltk.pos_tag(sent) for sent in sentences]
-#     return sentences
 
 def get_chunk_text(note_text, num_sents):
     """ Return chunk of text around term """
@@ -257,7 +243,7 @@ def get_ratings_averages():
     return combined_avg
 
 def print_all_ratings_text():
-    """ print out all ratings and the text """
+    """ Print out all ratings and the text """
     r1 = get_ratings(config.ratings_first)
     r2 = get_ratings(config.ratings_second)
     r3 = get_ratings(config.ratings_third)
@@ -295,7 +281,6 @@ def run(path, dataset):
 
     parse_csv_file(path, dataset)
 
-# def main(datafile, dataset, on_test, on_train):
 def main(args):
     if args.datafile and args.dataset:
         run(args.datafile, args.dataset)
